@@ -1,0 +1,5 @@
+{
+  "presets": [["@babel/preset-env", { "targets": { "node": 11 } }]],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"],
+  "env": { "test": { "plugins": [["istanbul", { "exclude": ["test/**"] }]] } }
+}

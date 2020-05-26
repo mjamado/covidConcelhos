@@ -1,0 +1,35 @@
+{
+  "name": "covidconcelhos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "clean": "rimraf build",
+    "analysis": "node_modules/@babel/node/bin/babel-node.js --presets @babel/preset-env src/analysis/index.js",
+    "geojson": "node_modules/@babel/node/bin/babel-node.js --presets @babel/preset-env src/helpers/shapefileToGeoJSON.js"
+  },
+  "author": "Marco Amado",
+  "license": "LGPL-3.0-or-later",
+  "dependencies": {
+    "@babel/polyfill": "^7.6.0",
+    "@turf/turf": "^5.1.6",
+    "app-root-path": "^3.0.0",
+    "node-fetch": "^2.6.0",
+    "shapefile": "^0.6.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.3",
+    "rimraf": "^3.0.0"
+  }
+}

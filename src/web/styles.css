@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+html, body {
+  border: 0;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+body {
+  line-height: 1.75rem;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#concelhos {
+  width: 20rem;
+  height: 1.75rem;
+  margin: 1rem;
+}
+
+.inputHolder {
+  margin: 1rem;
+}
+
+.chartContainer {
+  position: relative;
+  height: 60vh;
+  width: 90vw;
+  margin: 0 auto;
+}

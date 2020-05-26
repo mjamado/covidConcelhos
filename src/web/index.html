@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CoViD Concelhos</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="styles.css" rel="stylesheet" />
+  <script async src="../../data/parsedData.js"></script>
+  <script async src="web.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.26.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.26.0/locale/pt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+<body>
+  <h1>CoViD Concelhos</h1>
+  <div id="header">
+    <select id="concelhos">
+
+    </select>
+    <div class="inputHolder">
+      <label for="start">Início</label>
+      <input type="date" id="start" value="" />
+    </div>
+    <div class="inputHolder">
+      <label for="end">Fim</label>
+      <input type="date" id="end" value="" />
+    </div>
+    <div class="inputHolder">
+      <label for="new">Novos</label>
+      <input type="checkbox" id="new" value="new" />
+    </div>
+    <div class="inputHolder">
+      <label for="log">Log</label>
+      <input type="checkbox" id="log" value="log" />
+    </div>
+    <div class="inputHolder">
+      <label for="active">Activos<a href="#note-1"><sup>1</sup></a></label>
+      <input type="checkbox" id="active" value="active" />
+    </div>
+    <div class="inputHolder">
+      <label for="neighbours">Vizinhança</label>
+      <input type="checkbox" id="neighbours" value="neighbours" />
+    </div>
+  </div>
+  <small>
+    <a id="note-1"><sup>1</sup></a>
+    Os activos são calculados usando a proporção de confirmados entre o concelho e o país,
+    retirando os recuperados e os óbitos proporcionalmente.<br />
+    <code>activos = concelho - ((recuperados + obitos) * (concelho / confirmados))</code>
+  </small>
+  <hr />
+  <div class="chartContainer">
+    <canvas id="chart"></canvas>
+  </div>
+</body>
+</html>
