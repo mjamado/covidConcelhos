@@ -4,7 +4,7 @@ CoViD-19 charts by municipality
 
 ## Usage
 
-Just point a browser to `src/web/index.html`, nothing else.
+Just point a browser to `index.html`, nothing else.
 
 ## Update data
 
