@@ -14,9 +14,20 @@
 <body>
   <h1>CoViD Concelhos</h1>
   <div id="header">
-    <select id="concelhos">
-
-    </select>
+    <div class="inputHolder">
+      <label for="concelhos">Dados</label>
+      <select id="concelhos">
+        <option select value="">Nenhum</option>
+        <option disabled>─────────────────────────</option>
+        <option value="top10value">Top 10 Total</option>
+        <option value="top20value">Top 20 Total</option>
+        <option value="top10increment">Top 10 Novos</option>
+        <option value="top20increment">Top 20 Novos</option>
+        <option value="top10movingAverage5days">Top 10 Novos (média móvel 5 dias)</option>
+        <option value="top20movingAverage5days">Top 20 Novos (média móvel 5 dias)</option>
+        <option disabled>─────────────────────────</option>
+      </select>
+    </div>
     <div class="inputHolder">
       <label for="start">Início</label>
       <input type="date" id="start" value="" />
@@ -26,16 +37,17 @@
       <input type="date" id="end" value="" />
     </div>
     <div class="inputHolder">
-      <label for="new">Novos</label>
-      <input type="checkbox" id="new" value="new" />
+      <label for="mode">Valor</label>
+      <select id="mode">
+        <option selected value="value">Totais</option>
+        <option value="proportionalActive">Activos</option>
+        <option value="increment">Novos</option>
+        <option value="movingAverage5days">Novos (média móvel 5 dias)</option>
+      </select>
     </div>
     <div class="inputHolder">
       <label for="log">Log</label>
       <input type="checkbox" id="log" value="log" />
-    </div>
-    <div class="inputHolder">
-      <label for="active">Activos<a href="#note-1"><sup>1</sup></a></label>
-      <input type="checkbox" id="active" value="active" />
     </div>
     <div class="inputHolder">
       <label for="neighbours">Vizinhança</label>

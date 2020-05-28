@@ -2,7 +2,9 @@ import fs from 'fs';
 
 import appRoot from 'app-root-path';
 import fetch from 'node-fetch';
-import { intersect, buffer, bbox, bboxPolygon } from '@turf/turf';
+import {
+  intersect, buffer, bbox, bboxPolygon,
+} from '@turf/turf';
 
 import geoData from '../../data/concelhos.json';
 
@@ -76,6 +78,10 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
 
                 const value = parseInt(matches[2], 10);
                 const increment = value - (prevRes?.data?.[prevRes?.data?.length - 1]?.value || 0);
+                const movingAverage5days = Math.round(prevRes
+                  ?.data
+                  ?.slice(-5)
+                  ?.reduce((acc, val) => acc + val.increment, 0) / 5);
                 const proportion = value / totals.infected;
                 const proportionalRecovered = Math.round(totals.recovered * proportion);
                 const proportionalDead = Math.round(totals.dead * proportion);
@@ -93,6 +99,7 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
                       date: `${fileMatch[1]}-${fileMatch[2]}-${fileMatch[3]}`,
                       value,
                       increment,
+                      movingAverage5days,
                       proportionalRecovered,
                       proportionalDead,
                       proportionalActive,
