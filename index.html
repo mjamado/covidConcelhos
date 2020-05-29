@@ -18,14 +18,14 @@
       <label for="concelhos">Dados</label>
       <select id="concelhos">
         <option select value="">Nenhum</option>
-        <option disabled>─────────────────────────</option>
+        <option disabled>────────────────────</option>
         <option value="top10value">Top 10 Total</option>
         <option value="top20value">Top 20 Total</option>
         <option value="top10increment">Top 10 Novos</option>
         <option value="top20increment">Top 20 Novos</option>
         <option value="top10movingAverage5days">Top 10 Novos (média móvel 5 dias)</option>
         <option value="top20movingAverage5days">Top 20 Novos (média móvel 5 dias)</option>
-        <option disabled>─────────────────────────</option>
+        <option disabled>────────────────────</option>
       </select>
     </div>
     <div class="inputHolder">
@@ -41,9 +41,11 @@
       <select id="mode">
         <option selected value="value">Totais</option>
         <option value="proportionalActive">Activos</option>
+        <option value="contagious">Contagiosos</option>
         <option value="increment">Novos</option>
         <option value="movingAverage5days">Novos (média móvel 5 dias)</option>
       </select>
+      <a href="#notes"><sup>*</sup></a>
     </div>
     <div class="inputHolder">
       <label for="log">Log</label>
@@ -54,15 +56,21 @@
       <input type="checkbox" id="neighbours" value="neighbours" />
     </div>
   </div>
-  <small>
-    <a id="note-1"><sup>1</sup></a>
-    Os activos são calculados usando a proporção de confirmados entre o concelho e o país,
-    retirando os recuperados e os óbitos proporcionalmente.<br />
-    <code>activos = concelho - ((recuperados + obitos) * (concelho / confirmados))</code>
-  </small>
   <hr />
   <div class="chartContainer">
     <canvas id="chart"></canvas>
   </div>
+  <hr />
+  <h2><a id="notes"><sup>*</sup></a>Notas</h2>
+  <p>
+    Os <strong>activos</strong> são calculados usando a proporção de confirmados entre o concelho e o país,
+    retirando os recuperados e os óbitos proporcionalmente.<br />
+    <code>activos = concelho - ((recuperados + obitos) * (concelho / confirmados))</code>
+  </p>
+  <p>
+    Os <strong>contagiosos</strong> são calculados retirando todos os novos casos registados há mais de 11 dias, de acordo com
+    <a href="https://www.ncid.sg/Documents/Period%20of%20Infectivity%20Position%20Statementv2.pdf" target="_blank">o estudo</a>
+    da <em>National Centre for Infectious Diseases</em>, de Singapura.
+  </p>
 </body>
 </html>

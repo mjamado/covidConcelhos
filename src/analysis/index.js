@@ -86,6 +86,12 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
                 const proportionalRecovered = Math.round(totals.recovered * proportion);
                 const proportionalDead = Math.round(totals.dead * proportion);
                 const proportionalActive = value - (proportionalRecovered + proportionalDead);
+                const contagious = Math.max(
+                  value - prevRes?.data
+                    ?.slice(0, -11)
+                    ?.reduce((acc, val) => acc + val.increment, 0),
+                  0,
+                );
 
                 analysis[concelho?.name || matches[1]] = {
                   ...prevRes,
@@ -99,6 +105,7 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
                       date: `${fileMatch[1]}-${fileMatch[2]}-${fileMatch[3]}`,
                       value,
                       increment,
+                      contagious,
                       movingAverage5days,
                       proportionalRecovered,
                       proportionalDead,

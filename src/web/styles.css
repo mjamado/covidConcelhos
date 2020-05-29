@@ -30,3 +30,7 @@ body {
   width: 90vw;
   margin: 0 auto;
 }
+
+.small {
+  font-size: 0.8rem;
+}
