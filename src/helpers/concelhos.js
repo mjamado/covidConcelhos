@@ -260,6 +260,7 @@ const concelhos = [
   { name: 'Vizela', alternateNames: [] },
   { name: 'Vouzela', alternateNames: [] },
   { name: 'Nazaré', alternateNames: [] },
+  { name: 'Santa Cruz da Graciosa', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
