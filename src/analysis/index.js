@@ -78,10 +78,10 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
 
                 const value = parseInt(matches[2], 10);
                 const increment = value - (prevRes?.data?.[prevRes?.data?.length - 1]?.value || 0);
-                const movingAverage5days = Math.round(prevRes
+                const movingAverage5days = Math.round((prevRes
                   ?.data
                   ?.slice(-5)
-                  ?.reduce((acc, val) => acc + val.increment, 0) / 5);
+                  ?.reduce((acc, val) => acc + val.increment, 0) / 5 + Number.EPSILON) * 10) / 10;
                 const proportion = value / totals.infected;
                 const proportionalRecovered = Math.round(totals.recovered * proportion);
                 const proportionalDead = Math.round(totals.dead * proportion);
