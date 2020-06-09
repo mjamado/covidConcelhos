@@ -2,6 +2,39 @@
 
 let chart;
 
+const events = [
+  {
+    x: '2020-03-18', y: 3, r: 8, label: 'Estado de emergência',
+  },
+  {
+    x: '2020-04-10', y: 3, r: 8, label: 'Sexta-feira Santa',
+  },
+  {
+    x: '2020-04-12', y: 3, r: 8, label: 'Páscoa',
+  },
+  {
+    x: '2020-04-25', y: 3, r: 8, label: '25 de Abril',
+  },
+  {
+    x: '2020-05-01', y: 3, r: 8, label: '1º de Maio',
+  },
+  {
+    x: '2020-05-02', y: 3, r: 8, label: 'Fim de estado de emergência',
+  },
+  {
+    x: '2020-05-04', y: 3, r: 8, label: 'Desconfinamento',
+  },
+  {
+    x: '2020-05-18', y: 3, r: 8, label: 'Restaurantes, lojas, creches e ensino secundário',
+  },
+  {
+    x: '2020-06-01', y: 3, r: 8, label: 'Centros comerciais, ATL, pré-escolas, cultura',
+  },
+  {
+    x: '2020-06-06', y: 3, r: 8, label: 'Manifestação contra o racismo',
+  },
+];
+
 const initChart = () => {
   const ctx = document.getElementById('chart').getContext('2d');
 
@@ -13,16 +46,39 @@ const initChart = () => {
       tooltips: {
         callbacks: {
           title: (tooltipItem) => moment(tooltipItem[0].label).format('dddd, D MMMM'),
+          label: (tooltipItem, data) => {
+            const dataset = data.datasets[tooltipItem.datasetIndex];
+            const item = dataset.data[tooltipItem.index];
+
+            if (item.label) {
+              // it's an event
+              return item.label;
+            }
+
+            return `${dataset.label}: ${item.y}`;
+          },
         },
       },
       scales: {
-        yAxes: [{
-          type: 'linear',
-          ticks: {
-            beginAtZero: true,
-            precision: 0,
+        yAxes: [
+          {
+            id: 'values',
+            type: 'linear',
+            ticks: {
+              beginAtZero: true,
+              precision: 0,
+            },
           },
-        }],
+          {
+            id: 'events',
+            type: 'linear',
+            display: false,
+            ticks: {
+              min: 0,
+              max: 4,
+            },
+          },
+        ],
         xAxes: [{
           type: 'time',
           time: {
@@ -59,6 +115,25 @@ const getColor = (index) => {
   return `rgba(${r}, ${g}, ${b}, ${1 - (loop / 5)})`;
 };
 
+const prepareEvents = (startDate = null, endDate = null) => ({
+  label: 'Eventos',
+  borderColor: 'rgba(64, 64, 64, 0.5)',
+  data: events
+    .filter((item) => {
+      if (startDate && moment(startDate).isSameOrAfter(item.x)) {
+        return false;
+      }
+
+      if (endDate && moment(endDate).isSameOrBefore(item.x)) {
+        return false;
+      }
+
+      return true;
+    }),
+  yAxisID: 'events',
+  type: 'bubble',
+});
+
 const prepareDataSet = (
   name,
   borderColor,
@@ -86,6 +161,7 @@ const prepareDataSet = (
       // eslint-disable-next-line no-nested-ternary
       y: item[mode],
     })),
+  yAxisID: 'values',
 });
 
 const getTops = (howMany, what, endDate = null) => Object.keys(data)
@@ -121,14 +197,17 @@ const onConcelhoChanged = () => {
 
       if (howMany && what) {
         drawChart({
-          datasets: getTops(howMany, what, endDate)
-            .map((name, index) => prepareDataSet(
-              name,
-              getColor(index),
-              startDate,
-              endDate,
-              selectedMode,
-            )),
+          datasets: [
+            prepareEvents(startDate, endDate),
+            ...getTops(howMany, what, endDate)
+              .map((name, index) => prepareDataSet(
+                name,
+                getColor(index),
+                startDate,
+                endDate,
+                selectedMode,
+              )),
+          ],
         });
       } else {
         drawChart({ datasets: [] });
@@ -136,6 +215,7 @@ const onConcelhoChanged = () => {
     } else {
       drawChart({
         datasets: [
+          prepareEvents(startDate, endDate),
           prepareDataSet(
             selectedConcelho,
             getColor(0),
