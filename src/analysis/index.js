@@ -47,9 +47,9 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
               const matches = line.match(/^([^*]+) (\d+)$/);
 
               if (matches) {
-                const prevRes = analysis[matches[1]] || {};
-                let neighbours = prevRes?.neighbours;
                 const concelho = getConcelhoByName(matches[1]);
+                const prevRes = analysis[concelho?.name || matches[1]] || {};
+                let neighbours = prevRes?.neighbours;
 
                 if (concelho && !neighbours) {
                   neighbours = [];
