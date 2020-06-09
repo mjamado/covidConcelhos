@@ -262,6 +262,7 @@ const concelhos = [
   { name: 'Nazaré', alternateNames: [] },
   { name: 'Santa Cruz da Graciosa', alternateNames: [] },
   { name: 'Proença-a-Nova', alternateNames: [] },
+  { name: 'Povoação', alternateNames: ['Povoação (Açores)'] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
