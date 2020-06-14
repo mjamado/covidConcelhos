@@ -82,6 +82,7 @@ const initChart = () => {
         xAxes: [{
           type: 'time',
           time: {
+            unit: 'day',
             displayFormats: {
               day: 'DD MMM',
             },
