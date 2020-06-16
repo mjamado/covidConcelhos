@@ -263,6 +263,10 @@ const concelhos = [
   { name: 'Santa Cruz da Graciosa', alternateNames: [] },
   { name: 'Proença-a-Nova', alternateNames: [] },
   { name: 'Povoação', alternateNames: ['Povoação (Açores)'] },
+  { name: 'Sabugal', alternateNames: [] },
+  { name: 'Mação', alternateNames: [] },
+  { name: 'Crato', alternateNames: [] },
+  { name: 'Aljustrel', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
