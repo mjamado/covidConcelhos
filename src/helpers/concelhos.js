@@ -267,6 +267,7 @@ const concelhos = [
   { name: 'Mação', alternateNames: [] },
   { name: 'Crato', alternateNames: [] },
   { name: 'Aljustrel', alternateNames: [] },
+  { name: 'Oleiros', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
