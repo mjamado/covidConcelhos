@@ -268,6 +268,7 @@ const concelhos = [
   { name: 'Crato', alternateNames: [] },
   { name: 'Aljustrel', alternateNames: [] },
   { name: 'Oleiros', alternateNames: [] },
+  { name: 'Viana do Alentejo', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
