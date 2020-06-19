@@ -9,7 +9,6 @@ import {
 import geoData from '../../data/concelhos.json';
 
 import getConcelhoByName from '../helpers/concelhos';
-import { start } from 'repl';
 
 const analysis = {};
 
