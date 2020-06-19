@@ -9,6 +9,7 @@ import {
 import geoData from '../../data/concelhos.json';
 
 import getConcelhoByName from '../helpers/concelhos';
+import { start } from 'repl';
 
 const analysis = {};
 
@@ -134,9 +135,42 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
       process.exit(1);
     }
 
+    // calculate moving average correctly
+    const reAnalysis = {};
+
+    Object.keys(analysis).forEach((concelhoName) => {
+      reAnalysis[concelhoName] = {
+        ...analysis[concelhoName],
+        data: analysis[concelhoName].data.map((datum, index, originalData) => {
+          let startIndex = index - 2;
+          let endIndex = index + 3;
+
+          if (startIndex < 0) {
+            startIndex = 0;
+          }
+
+          if (endIndex > originalData.length) {
+            endIndex = originalData.length;
+          }
+
+          return {
+            ...datum,
+            movingAverage5days: Math.round((
+              originalData
+                .slice(startIndex, endIndex)
+                .reduce(
+                  (acc, val) => acc + val.increment,
+                  0,
+                ) / (endIndex - startIndex) + Number.EPSILON
+            ) * 10) / 10,
+          };
+        }),
+      };
+    });
+
     fs.writeFileSync(
       `${appRoot}/data/parsedData.js`,
-      `const data = ${JSON.stringify(analysis)};`,
+      `const data = ${JSON.stringify(reAnalysis)};`,
     );
 
     process.exit(0);
