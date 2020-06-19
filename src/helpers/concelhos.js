@@ -269,6 +269,8 @@ const concelhos = [
   { name: 'Aljustrel', alternateNames: [] },
   { name: 'Oleiros', alternateNames: [] },
   { name: 'Viana do Alentejo', alternateNames: [] },
+  { name: 'Tabuaço', alternateNames: [] },
+  { name: 'Vila do Bispo', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
