@@ -271,6 +271,7 @@ const concelhos = [
   { name: 'Viana do Alentejo', alternateNames: [] },
   { name: 'Tabuaço', alternateNames: [] },
   { name: 'Vila do Bispo', alternateNames: [] },
+  { name: 'Penamacor', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
