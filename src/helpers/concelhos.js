@@ -272,6 +272,7 @@ const concelhos = [
   { name: 'Tabuaço', alternateNames: [] },
   { name: 'Vila do Bispo', alternateNames: [] },
   { name: 'Penamacor', alternateNames: [] },
+  { name: 'Redondo', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
