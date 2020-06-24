@@ -273,6 +273,8 @@ const concelhos = [
   { name: 'Vila do Bispo', alternateNames: [] },
   { name: 'Penamacor', alternateNames: [] },
   { name: 'Redondo', alternateNames: [] },
+  { name: 'Freixo de Espada à Cinta', alternateNames: [] },
+  { name: 'Vila Viçosa', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
