@@ -276,6 +276,7 @@ const concelhos = [
   { name: 'Freixo de Espada à Cinta', alternateNames: [] },
   { name: 'Vila Viçosa', alternateNames: [] },
   { name: 'Golegã', alternateNames: [] },
+  { name: 'Armamar', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
