@@ -81,8 +81,8 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
                 const movingAverage5days = Math.round((
                   prevRes
                     ?.data
-                    ?.slice(-4)
-                    ?.reduce((acc, val) => acc + val.increment, increment) / 5 + Number.EPSILON
+                    ?.slice(-6)
+                    ?.reduce((acc, val) => acc + val.increment, increment) / 7 + Number.EPSILON
                 ) * 10) / 10;
                 const proportion = value / totals.infected;
                 const proportionalRecovered = Math.round(totals.recovered * proportion);
