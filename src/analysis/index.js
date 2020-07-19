@@ -78,7 +78,7 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
 
                 const value = parseInt(matches[2], 10);
                 const increment = value - (prevRes?.data?.[prevRes?.data?.length - 1]?.value || 0);
-                const movingAverage5days = Math.round((
+                const movingAverage7days = Math.round((
                   prevRes
                     ?.data
                     ?.slice(-6)
@@ -108,7 +108,7 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
                       value,
                       increment,
                       contagious,
-                      movingAverage5days,
+                      movingAverage7days,
                       proportionalRecovered,
                       proportionalDead,
                       proportionalActive,
@@ -154,7 +154,7 @@ fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
 
           return {
             ...datum,
-            movingAverage5days: Math.round((
+            movingAverage7days: Math.round((
               originalData
                 .slice(startIndex, endIndex)
                 .reduce(
