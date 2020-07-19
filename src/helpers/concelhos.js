@@ -277,6 +277,11 @@ const concelhos = [
   { name: 'Vila Viçosa', alternateNames: [] },
   { name: 'Golegã', alternateNames: [] },
   { name: 'Armamar', alternateNames: [] },
+  { name: 'Alandroal', alternateNames: [] },
+  { name: 'Aljezur', alternateNames: [] },
+  { name: 'Idanha-a-Nova', alternateNames: [] },
+  { name: 'Machico', alternateNames: [] },
+  { name: 'Mourão', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
