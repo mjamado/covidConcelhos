@@ -282,6 +282,8 @@ const concelhos = [
   { name: 'Idanha-a-Nova', alternateNames: [] },
   { name: 'Machico', alternateNames: [] },
   { name: 'Mourão', alternateNames: [] },
+  { name: 'Ferreira do Alentejo', alternateNames: [] },
+  { name: 'Sardoal', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
