@@ -284,6 +284,8 @@ const concelhos = [
   { name: 'Mourão', alternateNames: [] },
   { name: 'Ferreira do Alentejo', alternateNames: [] },
   { name: 'Sardoal', alternateNames: [] },
+  { name: 'Arraiolos', alternateNames: [] },
+  { name: 'Ferreira do Zêzere', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
