@@ -286,14 +286,62 @@ const concelhos = [
   { name: 'Sardoal', alternateNames: [] },
   { name: 'Arraiolos', alternateNames: [] },
   { name: 'Ferreira do Zêzere', alternateNames: [] },
+  { name: 'Aguiar da Beira', alternateNames: [] },
+  { name: 'Alcoutim', alternateNames: [] },
+  { name: 'Alter do Chão', alternateNames: [] },
+  { name: 'Alvito', alternateNames: [] },
+  { name: 'Arronches', alternateNames: [] },
+  { name: 'Avis', alternateNames: [] },
+  { name: 'Barrancos', alternateNames: [] },
+  { name: 'Belmonte', alternateNames: [] },
+  { name: 'Borba', alternateNames: [] },
+  { name: 'Boticas', alternateNames: [] },
+  { name: 'Campo Maior', alternateNames: [] },
+  { name: 'Castanheira De Pêra', alternateNames: [] },
+  { name: 'Castelo De Vide', alternateNames: [] },
+  { name: 'Castro Verde', alternateNames: [] },
+  { name: 'Constância', alternateNames: [] },
+  { name: 'Corvo', alternateNames: [] },
+  { name: 'Estremoz', alternateNames: [] },
+  { name: 'Fronteira', alternateNames: [] },
+  { name: 'Gavião', alternateNames: [] },
+  { name: 'Lajes Das Flores', alternateNames: [] },
+  { name: 'Lajes Do Pico', alternateNames: [] },
+  { name: 'Marvão', alternateNames: [] },
+  { name: 'Mêda', alternateNames: [] },
+  { name: 'Mértola', alternateNames: [] },
+  { name: 'Mesão Frio', alternateNames: [] },
+  { name: 'Mondim De Basto', alternateNames: [] },
+  { name: 'Monforte', alternateNames: [] },
+  { name: 'Mora', alternateNames: [] },
+  { name: 'Nisa', alternateNames: [] },
+  { name: 'Ourique', alternateNames: [] },
+  { name: 'Pampilhosa Da Serra', alternateNames: [] },
+  { name: 'Penalva Do Castelo', alternateNames: [] },
+  { name: 'Penedono', alternateNames: [] },
+  { name: 'Porto Moniz', alternateNames: [] },
+  { name: 'Ribeira Brava', alternateNames: [] },
+  { name: 'Ribeira Grande', alternateNames: [] },
+  { name: 'Santa Cruz Das Flores', alternateNames: [] },
+  { name: 'Santana', alternateNames: [] },
+  { name: 'São João Da Pesqueira', alternateNames: [] },
+  { name: 'São Vicente', alternateNames: [] },
+  { name: 'Sousel', alternateNames: [] },
+  { name: 'Tarouca', alternateNames: [] },
+  { name: 'Vidigueira', alternateNames: [] },
+  { name: 'Vila De Rei', alternateNames: [] },
+  { name: 'Vila Do Porto', alternateNames: [] },
+  { name: 'Vila Franca Do Campo', alternateNames: [] },
+  { name: 'Vila Nova De Paiva', alternateNames: [] },
+  { name: 'Vila Velha De Ródão', alternateNames: [] },
 ];
 
 const getConcelhoByName = (name) => concelhos.find((concelho) => {
-  if (concelho.name === name) {
+  if (concelho.name.toLocaleLowerCase('pt-PT') === name.toLocaleLowerCase('pt-PT')) {
     return concelho;
   }
 
-  if (concelho.alternateNames.find((alternateName) => alternateName === name)) {
+  if (concelho.alternateNames.find((alternateName) => alternateName.toLocaleLowerCase('pt-PT') === name.toLocaleLowerCase('pt-PT'))) {
     return concelho;
   }
 
