@@ -8,7 +8,7 @@ import {
 
 import geoData from '../../data/concelhos.json';
 
-import getConcelhoByName from '../helpers/concelhos';
+import getConcelhoByName, { concelhos } from '../helpers/concelhos';
 
 const analysis = {};
 
@@ -23,6 +23,30 @@ const getTotalsByDate = (res, year, month, day) => {
   };
 };
 
+// check duplicates
+const alreadySeen = {};
+const flattenConcelhos = concelhos.reduce((acc, item) => {
+  acc.push(item.name.toLocaleLowerCase('pt-PT'));
+
+  if (item.alternateNames?.length) {
+    acc.push(...item.alternateNames.map((alternate) => alternate.toLocaleLowerCase('pt-PT')));
+  }
+
+  return acc;
+}, []);
+
+// eslint-disable-next-line no-return-assign
+flattenConcelhos.forEach((item) => (
+  alreadySeen[item]
+    // eslint-disable-next-line no-console
+    ? console.log(item)
+    : (alreadySeen[item] = (alreadySeen[item] || 0) + 1)
+));
+
+if (Object.keys(alreadySeen).reduce((acc, item) => acc || (alreadySeen[item] > 1), false)) {
+  process.exit(1);
+}
+
 Promise.all([
   fetch('https://covid19-api.vost.pt/Requests/get_full_dataset', {
     method: 'GET',
@@ -33,9 +57,9 @@ Promise.all([
     headers: { Accept: 'text/csv; charset=utf-8' },
   }),
 ])
-  .then(([full, concelhos]) => Promise.all([full.json(), concelhos.text()]))
-  .then(([full, concelhos]) => {
-    const [titleLine, ...concelhosData] = concelhos
+  .then(([full, fetchedConcelhos]) => Promise.all([full.json(), fetchedConcelhos.text()]))
+  .then(([full, fetchedConselhos]) => {
+    const [titleLine, ...concelhosData] = fetchedConselhos
       .split('\n')
       .map((line) => line.split(','));
 
